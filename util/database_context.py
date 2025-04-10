@@ -7,8 +7,8 @@ class DatabaseContext:
             connection = pymysql.connect(
                 host='localhost',
                 user='root',
-                password='root',  # replace with your actual password
-                database='payxpert1',      # your database name
+                password='root',  
+                database='payxpert1',      
                 cursorclass=pymysql.cursors.DictCursor
             )
             return connection
