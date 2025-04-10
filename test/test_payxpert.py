@@ -9,11 +9,11 @@ from util.database_context import DatabaseContext
 from util.validation_service import ValidationService
 from exception.custom_exceptions import InvalidInputException
 
-#  Establish database connection for services
+
 conn = DatabaseContext.get_connection()
 
 
-# ---------- Test Case 1: Calculate Gross Salary ----------
+#Test Case 1: Calculate Gross Salary
 def test_calculate_gross_salary_for_employee():
     basic = 60000.00
     overtime = 5000.00
@@ -21,7 +21,7 @@ def test_calculate_gross_salary_for_employee():
     assert gross == 65000.00
 
 
-# ---------- Test Case 2: Calculate Net Salary ----------
+#Test Case 2: Calculate Net Salary
 def test_calculate_net_salary_after_deductions():
     basic = 60000.00
     overtime = 5000.00
@@ -30,7 +30,7 @@ def test_calculate_net_salary_after_deductions():
     assert net == 63000.00
 
 
-# ---------- Test Case 3: Tax Calculation for High Income ----------
+#Test Case 3: Tax Calculation for High Income
 def test_verify_tax_calculation_for_high_income_employee():
     tax_service = TaxService(conn)
     high_income_tax = Tax(tax_id=1, employee_id=1, tax_year=2024, taxable_income=Decimal('1200000.00'), tax_amount=Decimal('0.00'))
@@ -38,10 +38,10 @@ def test_verify_tax_calculation_for_high_income_employee():
     assert high_income_tax.get_tax_amount() == Decimal('120000.00')
 
 
-# ---------- Test Case 4: Process Payroll for Multiple Employees ----------
+# Test Case 4: Process Payroll for Multiple Employees 
 def test_process_payroll_for_multiple_employees():
     payroll_service = PayrollService(conn)
-    employee_ids = [1, 2, 3]  # Use real existing IDs
+    employee_ids = [1, 2, 3]
 
     count = 0
     for i in employee_ids:
@@ -54,7 +54,7 @@ def test_process_payroll_for_multiple_employees():
 
 
 
-# ---------- Test Case 5: Error Handling for Invalid Input ----------
+#Test Case 5: Error Handling for Invalid Input
 def test_verify_error_handling_for_invalid_email():
     invalid_email = "john[at]email.com"
     with pytest.raises(Exception):
